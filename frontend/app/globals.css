@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  /* ZipBikers brand palette — "Maroon Majlis" */
+  --color-cream: #faf7f2;
+  --color-cream-2: #eceae5;
+  --color-ink: #2b2320;
+  --color-muted: #8c7f76;
+  --color-line: #ede5da;
+
+  --color-neutral-50: #f0e9e0;
+  --color-neutral-100: #e4dacc;
+
+  --color-brand-50: #f6e7eb;
+  --color-brand-200: #e7b9c6;
+  --color-brand-300: #d8b7c2;
+  --color-brand-600: #7b1e3a;
+  --color-brand-700: #661731;
+
+  --color-good-50: #e4eee6;
+  --color-good-600: #3e7a54;
+  --color-good-700: #356a49;
+
+  --color-warn-50: #f7ecdb;
+  --color-warn-600: #b0752b;
+  --color-warn-700: #8f5e22;
+
+  /* Professional type system: Inter (UI/body) + Lora (headings/display) */
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-lora), Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Small, reusable motion primitives */
+  --animate-fade-in: fade-in 0.2s ease-out both;
+  --animate-fade-in-up: fade-in-up 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-in: scale-in 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-in-right: slide-in-right 0.26s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-700);
+}
