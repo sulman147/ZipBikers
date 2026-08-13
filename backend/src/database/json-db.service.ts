@@ -1,4 +1,4 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Database } from '../common/types';
@@ -121,5 +121,35 @@ export class JsonDbService implements OnModuleInit {
       this.saveTimer = null;
     }
     this.persistNow();
+  }
+
+  /** Deep-copy snapshot of every collection, for admin backup/export. */
+  exportAll(): Record<string, any[]> {
+    return JSON.parse(JSON.stringify(this.data));
+  }
+
+  /**
+   * Atomically replace every collection with the given data and flush to
+   * disk immediately (no debounce window). Used by the admin import
+   * endpoint to make Render's db.json an exact copy of an external source.
+   * Returns a per-collection record count for verification.
+   */
+  importAll(next: Record<string, unknown>): Record<string, number> {
+    if (!next || typeof next !== 'object' || Array.isArray(next)) {
+      throw new BadRequestException('Import payload must be an object mapping collection name to an array of records');
+    }
+    for (const [key, value] of Object.entries(next)) {
+      if (!Array.isArray(value)) {
+        throw new BadRequestException(`Collection "${key}" must be an array`);
+      }
+    }
+    this.data = JSON.parse(JSON.stringify(next));
+    this.flush();
+
+    const summary: Record<string, number> = {};
+    for (const [key, value] of Object.entries(this.data)) {
+      summary[key] = (value as unknown[]).length;
+    }
+    return summary;
   }
 }
