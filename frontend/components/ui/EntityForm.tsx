@@ -110,9 +110,9 @@ export function EntityForm({ fields, initialValues, onSubmit, onCancel, submitLa
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {fields.map((field) => (
-          <div key={field.name} className={field.colSpan === 2 ? 'col-span-2' : 'col-span-1'}>
+          <div key={field.name} className={field.colSpan === 2 ? 'sm:col-span-2' : 'col-span-1'}>
             <label className="mb-1 block text-xs font-semibold text-ink/80">
               {field.label}
               {field.required && <span className="text-brand-600"> *</span>}

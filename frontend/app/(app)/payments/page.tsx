@@ -162,7 +162,7 @@ export default function PaymentsPage() {
         }
       />
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-4 flex flex-wrap gap-2">
         {FILTERS.map((f) => (
           <button
             key={f}

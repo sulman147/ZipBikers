@@ -48,7 +48,7 @@ export default function BikeDetailPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Button size="sm" variant="ghost" onClick={() => router.push('/bikes')} className="mb-2 -ml-2">
             ← Back to bikes
@@ -79,7 +79,7 @@ export default function BikeDetailPage() {
 
         <Card className="lg:col-span-2">
           <CardHeader title="Financial Ledger" subtitle="Revenue vs. costs attributed to this bike (all-time)." />
-          <div className="grid grid-cols-3 gap-4 px-5 py-5">
+          <div className="grid grid-cols-1 gap-4 px-5 py-5 sm:grid-cols-3">
             <Ledger label="Revenue (paid)" value={formatMoney(totalRevenue)} tone="good" />
             <Ledger label="Maintenance Cost" value={formatMoney(totalMaintenanceCost)} tone="warn" />
             <Ledger label="Other Expenses" value={formatMoney(totalExpenseCost)} tone="warn" />

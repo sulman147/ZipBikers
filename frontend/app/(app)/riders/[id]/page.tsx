@@ -40,7 +40,7 @@ export default function RiderDetailPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Button size="sm" variant="ghost" onClick={() => router.push('/riders')} className="mb-2 -ml-2">
             ← Back to riders
